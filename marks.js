@@ -4,10 +4,14 @@ function result(event) {
     event.preventDefault();
     const inputs = document.querySelectorAll('input[type="number"]');
     let totalMarks = 0;
-
+    let result = true;
+let value = 0;
     inputs.forEach(input => {
         let value = parseFloat(input.value);
         totalMarks += value;
+        if(value <= 34){
+            result = false;
+        }
     });
 
     let averageMarks = totalMarks / inputs.length;
@@ -16,7 +20,7 @@ function result(event) {
     document.getElementById('average').textContent = "Average marks: " + averageMarks.toFixed(2);
 
     let grade;
-    if (averageMarks <= 34) {
+    if (result == false){
         grade = "Fail";
     } else if (averageMarks >= 90) {
         grade = "A+ GRADE";
